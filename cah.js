@@ -5,7 +5,7 @@ const getRandomCard = array => array[Math.floor(Math.random()*array.length)]
 const say = async (phrase, pauseAfter) => {
     const DEFAULT_SAY_PAUSE = 2000;
     console.log(`Going to say ${phrase}`)
-    execSync(`say ${phrase}`)
+    execSync(`say "${phrase}"`)
     
     const pauseTime = pauseAfter || DEFAULT_SAY_PAUSE
     console.log(`Pausing for ${pauseTime} ms`)
@@ -15,6 +15,8 @@ const say = async (phrase, pauseAfter) => {
 const pause = timeout => new Promise(res => setTimeout(res,timeout))
 
 const cah = require('./cah.json');
+
+const phrasesAfter = ['Ha Ha Ha', 'Hahahaha', 'Get it?', 'That\'s a good one!', 'Yeah, that\s nice!']
 
 const {whiteCards, blackCards} = cah
 
@@ -26,9 +28,7 @@ const whiteCard = getRandomCard(whiteCards);
 
     await say(whiteCard, 500)
     
-    await say('Ha Ha Ha', 1000)
-        
-    await say('Get it?')
+    await say(getRandomCard(phrasesAfter))
 })()
 
 
