@@ -2,14 +2,11 @@ const {execSync } = require('child_process')
 
 const getRandomCard = array => array[Math.floor(Math.random()*array.length)]
 
-const say = async (phrase, pauseAfter) => {
-    const DEFAULT_SAY_PAUSE = 2000;
+const say = async (phrase, pauseTime) => {
     console.log(`Going to say ${phrase}`)
     execSync(`say "${phrase}"`)
-    
-    const pauseTime = pauseAfter || DEFAULT_SAY_PAUSE
     console.log(`Pausing for ${pauseTime} ms`)
-    await pause(pauseTime)
+    pauseTime && await pause(pauseTime)
 }
 
 const pause = timeout => new Promise(res => setTimeout(res,timeout))
